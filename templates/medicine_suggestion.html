@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicine Suggestion</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Medicine Suggestion</h1>
+        <form method="POST" class="mt-4">
+            <div class="form-group">
+                <label for="disease">Enter Disease:</label>
+                <input type="text" name="disease" id="disease" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="medicine_model">Select Medicine Suggestion Model:</label>
+                <select name="medicine_model" id="medicine_model" class="form-control">
+                    {% for model in medicine_models %}
+                        <option value="{{ model }}">{{ model }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="btn btn-success">Get Medicine</button>
+        </form>
+
+        {% if error %}
+        <div class="alert alert-danger mt-4">
+            <strong>Error:</strong> {{ error }}
+        </div>
+        {% endif %}
+
+        {% if recommended_medicine %}
+        <div class="alert alert-success mt-4">
+            <strong>Recommended Medicine:</strong> {{ recommended_medicine }}
+        </div>
+        {% endif %}
+        
+        <a href="/" class="btn btn-secondary mt-3">Back to Home</a>
+    </div>
+</body>
+</html>
